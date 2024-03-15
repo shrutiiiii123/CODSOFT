@@ -1,0 +1,35 @@
+from tkinter import *
+import random
+import string
+root = Tk()
+lenword = IntVar()
+lennum = IntVar()
+lensymbol = IntVar()
+password = StringVar()
+root.title("Random password Generator")
+Label(root, text="Enter length of words").pack(pady=3)
+Entry(root, textvariable=lenword).pack(pady=3)
+Label(root, text="Enter length of Numbers").pack(pady=3)
+Entry(root, textvariable=lennum).pack(pady=3)
+Label(root, text="Enter length of symbols").pack(pady=3)
+Entry(root, textvariable=lensymbol).pack(pady=3)
+ 
+def generate_password():
+word=int(lenword.get())
+numb=int(lennum.get())
+symbol=int(lensymbol.get())
+ 
+letters=random.sample(string.ascii_letters,word)
+number=random.sample(string.digits , numb)
+symbols=random.sample(string.punctuation,symbol)
+listofpassword=letters + number + symbols
+random.shuffle(listofpassword)
+gen_password="".join(listofpassword)
+password.set(gen_password)
+ 
+ 
+Button(root, text="Tap to get", command=generate_password).pack(pady=3)
+Entry(root, textvariable=password).pack(pady=3)
+ 
+ 
+root.mainloop()

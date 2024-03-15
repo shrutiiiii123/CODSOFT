@@ -1,0 +1,41 @@
+def calculate(a,b,opr):
+    if opr=='+':
+        return a+b
+    elif opr=='-':
+        return a-b
+    elif opr=='*':
+        return a*b
+    elif opr=='/':
+        return a/b
+    elif opr=='^':
+        return a**b
+ 
+cal=True
+while cal is True:
+    try:
+     a=float(input("Enter First Number: "))
+     b= float(input("Enter Second Number: "))
+ 
+    except ValueError:
+        print("Invalid Input ,Please Enter a Number")
+        continue
+    try:
+     opr=input("Enter Operator +,-,*,/,^: ")
+     if opr not in ('+','-','*','/','^'):
+      raise TypeError()
+    except TypeError:
+     print("Invalid Input ,Please Enter An Operator from +,-,*,/,^")
+     continue
+    result=calculate(a,b,opr)
+    if result.is_integer():
+        result=int(result)
+    if a.is_integer():
+        a=int(a)
+    if b.is_integer():
+        b=int(b)
+    print(f'{a} {opr} {b} = {result}')
+    val=input("Do you want to continue(Press Y/N):")
+    if val not in ('Y','N','y','n'):
+      raise Exception("Invalid Choice")
+    if val in ('N','n'):
+     cal=False

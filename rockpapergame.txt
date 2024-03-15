@@ -1,0 +1,63 @@
+from tkinter import *
+import random
+global reset
+reset=0
+def computerchoice():
+    choice_value = ['Rock','Paper','Scissor']
+    answer=random.choice(choice_value)
+    return answer
+def rock():
+    global reset
+    if reset==0:
+     userinput='Rock'
+     getreselt(userinput)
+     reset = 1
+def paper():
+    global reset
+    if reset == 0:
+     userinput ='Paper'
+     getreselt(userinput)
+     reset = 1
+def scissor():
+    global reset
+    if reset == 0:
+     userinput ='Scissor'
+     getreselt(userinput)
+     reset = 1
+def getreselt(userinput):
+    computer=computerchoice()
+    user=userinput
+    textt=f"Your choice {user} ,Computer's choice {computer}"
+    text.set(textt)
+ 
+    if user == computer:
+        result.set("Tie")
+    elif user == 'Rock' and computer == 'Scissor':
+        result.set("You Win")
+    elif user == 'Scissor' and computer == 'Paper':
+        result.set("You Win")
+    elif user == 'Paper' and computer == 'Rock':
+        result.set("You Win")
+    else:
+        result.set("You Loss")
+ 
+def clearb():
+global reset
+reset=0
+result.set("")
+text.set("")
+ 
+root = Tk()
+text= StringVar()
+result = StringVar()
+ 
+root.title("Game")
+Label(root, text="Choose Rock,Paper or Scissors").pack(pady=3)
+button1=Button(root,text="Rock",bg="skyblue",command=rock).pack(pady=3)
+button2=Button(root,text="Paper",bg="skyblue",command=paper).pack(pady=3)
+button3=Button(root,text="Scissor",bg="skyblue",command=scissor).pack(pady=3)
+Entry(root, textvariable=text,width=40).pack(pady=3)
+Entry(root, textvariable=result).pack(pady=3)
+ 
+Button(root,text="press to play again",command=clearb).pack(pady=3)
+root.mainloop()
